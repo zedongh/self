@@ -1,8 +1,13 @@
-site_name: Zedongh
+site_name: Zedongh的站点
 site_url: https://zedongh.github.io/self
 
-nav: 
-  - Home: index.md
+nav:
+  - 初心: first-of-first.md
+  - 2021年:
+      Go依赖注入框架Fx: placeholder.md
+      重新学习认识Go语言: placeholder.md
+      Python依赖管理工具: placeholder.md
+  - 关于我: about-me.md
 
 theme:
   name: material
