@@ -1,0 +1,8 @@
+site_name: Zedongh
+site_url: https://zedongh.github.io/self
+
+nav: 
+  - Home: index.md
+
+theme:
+  name: material
