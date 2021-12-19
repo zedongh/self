@@ -7,7 +7,9 @@ authors = ["zedongh <248348907@qq.com>"]
 [tool.poetry.dependencies]
 python = "^3.7"
 mkdocs = "^1.2.3"
-mkdocs-material = "^7.3.6"
+mkdocs-material = "^8.1.2"
+mkdocs-minify-plugin = "^0.5.0"
+mkdocs-git-revision-date-localized-plugin = "^0.11.1"
 
 [tool.poetry.dev-dependencies]
 
