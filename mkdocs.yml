@@ -3,6 +3,8 @@ site_url: https://zedongh.github.io/self
 
 nav:
   - 初心: first-of-first.md
+  - 2022年:
+      - Go Future: 2022/go-future-implementation.md 
   - 2021年:
       - 重新学习Go语言: 2021/relearn-golang.md
   - 关于我: about-me.md
@@ -20,8 +22,6 @@ theme:
 
 plugins:
   - search
-  - git-revision-date-localized
-  - minify
 
 markdown_extensions:
   - abbr
