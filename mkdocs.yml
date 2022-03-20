@@ -4,6 +4,7 @@ site_url: https://zedongh.github.io/self
 nav:
   - 初心: first-of-first.md
   - 2022年:
+      - Go Dynamic Config: 2022/go-dynamic-config.md
       - Go Future: 2022/go-future-implementation.md 
       - Go Lock: 2022/go-lock-context.md
   - 2021年:

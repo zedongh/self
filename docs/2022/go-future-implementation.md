@@ -8,7 +8,7 @@ title: Go Future Implementation
 
 ## 2. 代码版权先行声明
 
-```golang
+```golang title="Copyright"
 // Copyright (c) 2021 Uber Technologies, Inc.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
