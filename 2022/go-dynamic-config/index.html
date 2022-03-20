@@ -1,0 +1,876 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://zedongh.github.io/self/2022/go-dynamic-config/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.2.5">
+    
+    
+      
+        <title>Go Dynamic Config - Zedongh的站点</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2d9f7617.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Zedongh的站点" class="md-header__button md-logo" aria-label="Zedongh的站点" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Zedongh的站点
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Go Dynamic Config
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Zedongh的站点" class="md-nav__button md-logo" aria-label="Zedongh的站点" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Zedongh的站点
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../first-of-first/" class="md-nav__link">
+        初心
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          2022年
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="2022年" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          2022年
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Go Dynamic Config
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Go Dynamic Config
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 版权声明
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2. 客户端接口
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-file-based-client" class="md-nav__link">
+    3. File Based Client
+  </a>
+  
+    <nav class="md-nav" aria-label="3. File Based Client">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    3.2 构造器
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-collection" class="md-nav__link">
+    4. Collection
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Collection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-newcollection" class="md-nav__link">
+    4.1 NewCollection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-propertyfn" class="md-nav__link">
+    4.2 PropertyFn
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    5. 持久化存储
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 持久化存储">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-configstoreclient" class="md-nav__link">
+    5.1 configStoreClient
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    5.2 构造器
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    6. 总结
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../go-future-implementation/" class="md-nav__link">
+        Go Future
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../go-lock-context/" class="md-nav__link">
+        Go Lock
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" data-md-state="indeterminate" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          2021年
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="2021年" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          2021年
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2021/relearn-golang/" class="md-nav__link">
+        重新学习Go语言
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about-me/" class="md-nav__link">
+        关于我
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+  <h1>Go Dynamic Config</h1>
+
+<h2 id="1">1. 版权声明<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<div class="highlight"><span class="filename">Copyright</span><pre><span></span><code><span class="c1">// Copyright (c) 2021 Uber Technologies, Inc.</span><span class="w"></span>
+<span class="c1">//</span><span class="w"></span>
+<span class="c1">// Permission is hereby granted, free of charge, to any person obtaining a copy</span><span class="w"></span>
+<span class="c1">// of this software and associated documentation files (the &quot;Software&quot;), to deal</span><span class="w"></span>
+<span class="c1">// in the Software without restriction, including without limitation the rights</span><span class="w"></span>
+<span class="c1">// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span><span class="w"></span>
+<span class="c1">// copies of the Software, and to permit persons to whom the Software is</span><span class="w"></span>
+<span class="c1">// furnished to do so, subject to the following conditions:</span><span class="w"></span>
+<span class="c1">//</span><span class="w"></span>
+<span class="c1">// The above copyright notice and this permission notice shall be included in</span><span class="w"></span>
+<span class="c1">// all copies or substantial portions of the Software.</span><span class="w"></span>
+<span class="c1">//</span><span class="w"></span>
+<span class="c1">// THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span><span class="w"></span>
+<span class="c1">// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span><span class="w"></span>
+<span class="c1">// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span><span class="w"></span>
+<span class="c1">// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span><span class="w"></span>
+<span class="c1">// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span><span class="w"></span>
+<span class="c1">// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN</span><span class="w"></span>
+<span class="c1">// THE SOFTWARE.</span><span class="w"></span>
+</code></pre></div>
+<h2 id="2">2. 客户端接口<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<div class="highlight"><span class="filename">Client</span><pre><span></span><code><span class="kd">type</span><span class="w"> </span><span class="nx">Filter</span><span class="w"> </span><span class="kt">int</span><span class="w"></span>
+
+<span class="c1">// Client allows fetching values from a dynamic configuration system NOTE: This does not have async</span><span class="w"></span>
+<span class="c1">// options right now. In the interest of keeping it minimal, we can add when requirement arises.</span><span class="w"></span>
+<span class="kd">type</span><span class="w"> </span><span class="nx">Client</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">GetValue</span><span class="p">(</span><span class="nx">name</span><span class="w"> </span><span class="nx">Key</span><span class="p">,</span><span class="w"> </span><span class="nx">defaultValue</span><span class="w"> </span><span class="kd">interface</span><span class="p">{})</span><span class="w"> </span><span class="p">(</span><span class="kd">interface</span><span class="p">{},</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="nx">GetValueWithFilters</span><span class="p">(</span><span class="nx">name</span><span class="w"> </span><span class="nx">Key</span><span class="p">,</span><span class="w"> </span><span class="nx">filters</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="nx">Filter</span><span class="p">]</span><span class="kd">interface</span><span class="p">{},</span><span class="w"> </span><span class="nx">defaultValue</span><span class="w"> </span><span class="kd">interface</span><span class="p">{})</span><span class="w"> </span><span class="p">(</span><span class="kd">interface</span><span class="p">{},</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="nx">GetIntValue</span><span class="p">(</span><span class="nx">name</span><span class="w"> </span><span class="nx">Key</span><span class="p">,</span><span class="w"> </span><span class="nx">filters</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="nx">Filter</span><span class="p">]</span><span class="kd">interface</span><span class="p">{},</span><span class="w"> </span><span class="nx">defaultValue</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="nx">GetFloatValue</span><span class="p">(</span><span class="nx">name</span><span class="w"> </span><span class="nx">Key</span><span class="p">,</span><span class="w"> </span><span class="nx">filters</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="nx">Filter</span><span class="p">]</span><span class="kd">interface</span><span class="p">{},</span><span class="w"> </span><span class="nx">defaultValue</span><span class="w"> </span><span class="kt">float64</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="kt">float64</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="nx">GetBoolValue</span><span class="p">(</span><span class="nx">name</span><span class="w"> </span><span class="nx">Key</span><span class="p">,</span><span class="w"> </span><span class="nx">filters</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="nx">Filter</span><span class="p">]</span><span class="kd">interface</span><span class="p">{},</span><span class="w"> </span><span class="nx">defaultValue</span><span class="w"> </span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="kt">bool</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="nx">GetStringValue</span><span class="p">(</span><span class="nx">name</span><span class="w"> </span><span class="nx">Key</span><span class="p">,</span><span class="w"> </span><span class="nx">filters</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="nx">Filter</span><span class="p">]</span><span class="kd">interface</span><span class="p">{},</span><span class="w"> </span><span class="nx">defaultValue</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="nx">GetMapValue</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="nx">name</span><span class="w"> </span><span class="nx">Key</span><span class="p">,</span><span class="w"> </span><span class="nx">filters</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="nx">Filter</span><span class="p">]</span><span class="kd">interface</span><span class="p">{},</span><span class="w"> </span><span class="nx">defaultValue</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{},</span><span class="w"></span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kd">interface</span><span class="p">{},</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="nx">GetDurationValue</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="nx">name</span><span class="w"> </span><span class="nx">Key</span><span class="p">,</span><span class="w"> </span><span class="nx">filters</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="nx">Filter</span><span class="p">]</span><span class="kd">interface</span><span class="p">{},</span><span class="w"> </span><span class="nx">defaultValue</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">Duration</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Duration</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// UpdateValue takes value as map and updates by overriding. It doesn&#39;t support update with filters.</span><span class="w"></span>
+<span class="w">    </span><span class="nx">UpdateValue</span><span class="p">(</span><span class="nx">name</span><span class="w"> </span><span class="nx">Key</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="w"> </span><span class="kd">interface</span><span class="p">{})</span><span class="w"> </span><span class="kt">error</span><span class="w"></span>
+<span class="w">    </span><span class="nx">RestoreValue</span><span class="p">(</span><span class="nx">name</span><span class="w"> </span><span class="nx">Key</span><span class="p">,</span><span class="w"> </span><span class="nx">filters</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="nx">Filter</span><span class="p">]</span><span class="kd">interface</span><span class="p">{})</span><span class="w"> </span><span class="kt">error</span><span class="w"></span>
+<span class="w">    </span><span class="nx">ListValue</span><span class="p">(</span><span class="nx">name</span><span class="w"> </span><span class="nx">Key</span><span class="p">)</span><span class="w"> </span><span class="p">([]</span><span class="o">*</span><span class="nx">types</span><span class="p">.</span><span class="nx">DynamicConfigEntry</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h2 id="3-file-based-client">3. File Based Client<a class="headerlink" href="#3-file-based-client" title="Permanent link">&para;</a></h2>
+<div class="highlight"><span class="filename">fileBasedClient</span><pre><span></span><code><span class="c1">// FileBasedClientConfig is the config for the file based dynamic config client.</span><span class="w"></span>
+<span class="c1">// It specifies where the config file is stored and how often the config should be</span><span class="w"></span>
+<span class="c1">// updated by checking the config file again.</span><span class="w"></span>
+<span class="kd">type</span><span class="w"> </span><span class="nx">FileBasedClientConfig</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">Filepath</span><span class="w">     </span><span class="kt">string</span><span class="w">        </span><span class="s">`yaml:&quot;filepath&quot;`</span><span class="w"></span>
+<span class="w">    </span><span class="nx">PollInterval</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">Duration</span><span class="w"> </span><span class="s">`yaml:&quot;pollInterval&quot;`</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kd">type</span><span class="w"> </span><span class="nx">fileBasedClient</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">values</span><span class="w">          </span><span class="nx">atomic</span><span class="p">.</span><span class="nx">Value</span><span class="w">            </span><span class="c1">// 原子存储</span><span class="w"></span>
+<span class="w">    </span><span class="nx">lastUpdatedTime</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">Time</span><span class="w">               </span><span class="c1">// 最后更新时间</span><span class="w"></span>
+<span class="w">    </span><span class="nx">config</span><span class="w">          </span><span class="o">*</span><span class="nx">FileBasedClientConfig</span><span class="w"></span>
+<span class="w">    </span><span class="nx">doneCh</span><span class="w">          </span><span class="kd">chan</span><span class="w"> </span><span class="kd">struct</span><span class="p">{}</span><span class="w">           </span><span class="c1">// 关闭channel</span><span class="w"></span>
+<span class="w">    </span><span class="nx">logger</span><span class="w">          </span><span class="nx">log</span><span class="p">.</span><span class="nx">Logger</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h3 id="32">3.2 构造器<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<p><code>NewFileBasedClient</code>构造器集成相关的配置、logger以及接收关闭信号的channel <code>doneCh</code>。实现中尝试首次<code>update</code>加载数据，如果报错直接error返回，如果正常设定定时器定时<code>update</code>。</p>
+<div class="highlight"><span class="filename">NewFileBasedClient</span><pre><span></span><code><span class="c1">// NewFileBasedClient creates a file based client.</span><span class="w"></span>
+<span class="kd">func</span><span class="w"> </span><span class="nx">NewFileBasedClient</span><span class="p">(</span><span class="nx">config</span><span class="w"> </span><span class="o">*</span><span class="nx">FileBasedClientConfig</span><span class="p">,</span><span class="w"> </span><span class="nx">logger</span><span class="w"> </span><span class="nx">log</span><span class="p">.</span><span class="nx">Logger</span><span class="p">,</span><span class="w"> </span><span class="nx">doneCh</span><span class="w"> </span><span class="kd">chan</span><span class="w"> </span><span class="kd">struct</span><span class="p">{})</span><span class="w"> </span><span class="p">(</span><span class="nx">Client</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">validateConfig</span><span class="p">(</span><span class="nx">config</span><span class="p">);</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="nx">client</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">fileBasedClient</span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nx">config</span><span class="p">:</span><span class="w"> </span><span class="nx">config</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nx">doneCh</span><span class="p">:</span><span class="w"> </span><span class="nx">doneCh</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nx">logger</span><span class="p">:</span><span class="w"> </span><span class="nx">logger</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="hll"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">update</span><span class="p">();</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// first update check not failed</span><span class="w"></span>
+</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="hll"><span class="w">    </span><span class="k">go</span><span class="w"> </span><span class="kd">func</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// tick update</span><span class="w"></span>
+</span><span class="hll"><span class="w">        </span><span class="nx">ticker</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">NewTicker</span><span class="p">(</span><span class="nx">client</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">PollInterval</span><span class="p">)</span><span class="w"></span>
+</span><span class="hll"><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+</span><span class="hll"><span class="w">            </span><span class="k">select</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+</span><span class="hll"><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="o">&lt;-</span><span class="nx">ticker</span><span class="p">.</span><span class="nx">C</span><span class="p">:</span><span class="w"></span>
+</span><span class="hll"><span class="w">                </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">update</span><span class="p">()</span><span class="w"></span>
+</span><span class="hll"><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// if err happened, only log and do nothing</span><span class="w"></span>
+</span><span class="hll"><span class="w">                    </span><span class="nx">client</span><span class="p">.</span><span class="nx">logger</span><span class="p">.</span><span class="nx">Error</span><span class="p">(</span><span class="s">&quot;Failed to update dynamic config&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">tag</span><span class="p">.</span><span class="nx">Error</span><span class="p">(</span><span class="nx">err</span><span class="p">))</span><span class="w"></span>
+</span><span class="hll"><span class="w">                </span><span class="p">}</span><span class="w"></span>
+</span><span class="hll"><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="o">&lt;-</span><span class="nx">client</span><span class="p">.</span><span class="nx">doneCh</span><span class="p">:</span><span class="w"></span>
+</span><span class="hll"><span class="w">                </span><span class="nx">ticker</span><span class="p">.</span><span class="nx">Stop</span><span class="p">()</span><span class="w"></span>
+</span><span class="hll"><span class="w">                </span><span class="k">return</span><span class="w"></span>
+</span><span class="hll"><span class="w">            </span><span class="p">}</span><span class="w"></span>
+</span><span class="hll"><span class="w">        </span><span class="p">}</span><span class="w"></span>
+</span><span class="hll"><span class="w">    </span><span class="p">}()</span><span class="w"></span>
+</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">client</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p><code>update</code>函数通过获取文件的最后修改时间判定时候需要重新load，具体实现如下：</p>
+<div class="highlight"><span class="filename">update</span><pre><span></span><code><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">fc</span><span class="w"> </span><span class="o">*</span><span class="nx">fileBasedClient</span><span class="p">)</span><span class="w"> </span><span class="nx">update</span><span class="p">()</span><span class="w"> </span><span class="kt">error</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">defer</span><span class="w"> </span><span class="kd">func</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nx">fc</span><span class="p">.</span><span class="nx">lastUpdatedTime</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">Now</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="p">}()</span><span class="w"></span>
+
+<span class="w">    </span><span class="nx">newValues</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">][]</span><span class="o">*</span><span class="nx">constrainedValue</span><span class="p">)</span><span class="w"></span>
+
+<span class="hll"><span class="w">    </span><span class="nx">info</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">os</span><span class="p">.</span><span class="nx">Stat</span><span class="p">(</span><span class="nx">fc</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">Filepath</span><span class="p">)</span><span class="w">    </span><span class="c1">// 获取文件信息</span><span class="w"></span>
+</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Errorf</span><span class="p">(</span><span class="s">&quot;failed to get status of dynamic config file: %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="hll"><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">!</span><span class="nx">info</span><span class="p">.</span><span class="nx">ModTime</span><span class="p">().</span><span class="nx">After</span><span class="p">(</span><span class="nx">fc</span><span class="p">.</span><span class="nx">lastUpdatedTime</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// 对比文件最后修改时间</span><span class="w"></span>
+</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="nx">confContent</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">ioutil</span><span class="p">.</span><span class="nx">ReadFile</span><span class="p">(</span><span class="nx">fc</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">Filepath</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Errorf</span><span class="p">(</span><span class="s">&quot;failed to read dynamic config file %v: %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">fc</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">Filepath</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">yaml</span><span class="p">.</span><span class="nx">Unmarshal</span><span class="p">(</span><span class="nx">confContent</span><span class="p">,</span><span class="w"> </span><span class="nx">newValues</span><span class="p">);</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Errorf</span><span class="p">(</span><span class="s">&quot;failed to decode dynamic config %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">fc</span><span class="p">.</span><span class="nx">storeValues</span><span class="p">(</span><span class="nx">newValues</span><span class="p">)</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h2 id="4-collection">4. Collection<a class="headerlink" href="#4-collection" title="Permanent link">&para;</a></h2>
+<p>使用Client过程中，如果用户使用<code>value := client.GetValue("key", nil)</code>保存了配置值，有可能导致无法获取更新后的配置。需要对配置进行一层封装，这里使用的是<code>Collection</code>。</p>
+<div class="highlight"><span class="filename">Collection</span><pre><span></span><code><span class="c1">// Collection wraps dynamic config client with a closure so that across the code, the config values</span><span class="w"></span>
+<span class="c1">// can be directly accessed by calling the function without propagating the client everywhere in</span><span class="w"></span>
+<span class="c1">// code</span><span class="w"></span>
+<span class="kd">type</span><span class="w"> </span><span class="nx">Collection</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">client</span><span class="w">        </span><span class="nx">Client</span><span class="w">        </span><span class="c1">// wrapper of Client</span><span class="w"></span>
+<span class="w">    </span><span class="nx">logger</span><span class="w">        </span><span class="nx">log</span><span class="p">.</span><span class="nx">Logger</span><span class="w"></span>
+<span class="w">    </span><span class="nx">logKeys</span><span class="w">       </span><span class="o">*</span><span class="nx">sync</span><span class="p">.</span><span class="nx">Map</span><span class="w"> </span><span class="c1">// map of config Keys for logging to capture changes</span><span class="w"></span>
+<span class="w">    </span><span class="nx">errCount</span><span class="w">      </span><span class="kt">int64</span><span class="w"></span>
+<span class="w">    </span><span class="nx">filterOptions</span><span class="w"> </span><span class="p">[]</span><span class="nx">FilterOption</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h3 id="41-newcollection">4.1 <code>NewCollection</code><a class="headerlink" href="#41-newcollection" title="Permanent link">&para;</a></h3>
+<p>构造器的实现是<code>trivial</code>的：</p>
+<div class="highlight"><span class="filename">NewCollection</span><pre><span></span><code><span class="c1">// NewCollection creates a new collection</span><span class="w"></span>
+<span class="kd">func</span><span class="w"> </span><span class="nx">NewCollection</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="nx">client</span><span class="w"> </span><span class="nx">Client</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nx">logger</span><span class="w"> </span><span class="nx">log</span><span class="p">.</span><span class="nx">Logger</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nx">filterOptions</span><span class="w"> </span><span class="o">...</span><span class="nx">FilterOption</span><span class="p">,</span><span class="w"></span>
+<span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="nx">Collection</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">Collection</span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nx">client</span><span class="p">:</span><span class="w">        </span><span class="nx">client</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nx">logger</span><span class="p">:</span><span class="w">        </span><span class="nx">logger</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nx">logKeys</span><span class="p">:</span><span class="w">       </span><span class="o">&amp;</span><span class="nx">sync</span><span class="p">.</span><span class="nx">Map</span><span class="p">{},</span><span class="w"></span>
+<span class="w">        </span><span class="nx">errCount</span><span class="p">:</span><span class="w">      </span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nx">filterOptions</span><span class="p">:</span><span class="w"> </span><span class="nx">filterOptions</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h3 id="42-propertyfn">4.2 PropertyFn<a class="headerlink" href="#42-propertyfn" title="Permanent link">&para;</a></h3>
+<p>这里使用了<code>thunk</code>方式的wrapper，不是直接获取value，而是返回value的function:</p>
+<div class="highlight"><span class="filename">PropertyFn</span><pre><span></span><code><span class="c1">// PropertyFn is a wrapper to get property from dynamic config</span><span class="w"></span>
+<span class="hll"><span class="kd">type</span><span class="w"> </span><span class="nx">PropertyFn</span><span class="w"> </span><span class="kd">func</span><span class="p">()</span><span class="w"> </span><span class="kd">interface</span><span class="p">{}</span><span class="w"></span>
+</span>
+<span class="c1">// IntPropertyFn is a wrapper to get int property from dynamic config</span><span class="w"></span>
+<span class="hll"><span class="kd">type</span><span class="w"> </span><span class="nx">IntPropertyFn</span><span class="w"> </span><span class="kd">func</span><span class="p">(</span><span class="nx">opts</span><span class="w"> </span><span class="o">...</span><span class="nx">FilterOption</span><span class="p">)</span><span class="w"> </span><span class="kt">int</span><span class="w"></span>
+</span>
+<span class="c1">// GetProperty gets a interface property and returns defaultValue if property is not found</span><span class="w"></span>
+<span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">c</span><span class="w"> </span><span class="o">*</span><span class="nx">Collection</span><span class="p">)</span><span class="w"> </span><span class="nx">GetProperty</span><span class="p">(</span><span class="nx">key</span><span class="w"> </span><span class="nx">Key</span><span class="p">,</span><span class="w"> </span><span class="nx">defaultValue</span><span class="w"> </span><span class="kd">interface</span><span class="p">{})</span><span class="w"> </span><span class="nx">PropertyFn</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kd">func</span><span class="p">()</span><span class="w"> </span><span class="kd">interface</span><span class="p">{}</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nx">val</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">client</span><span class="p">.</span><span class="nx">GetValue</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span><span class="w"> </span><span class="nx">defaultValue</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nx">c</span><span class="p">.</span><span class="nx">logError</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="nx">c</span><span class="p">.</span><span class="nx">logValue</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="nx">val</span><span class="p">,</span><span class="w"> </span><span class="nx">defaultValue</span><span class="p">,</span><span class="w"> </span><span class="nx">reflect</span><span class="p">.</span><span class="nx">DeepEqual</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">val</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="c1">// GetIntProperty gets property and asserts that it&#39;s an integer</span><span class="w"></span>
+<span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">c</span><span class="w"> </span><span class="o">*</span><span class="nx">Collection</span><span class="p">)</span><span class="w"> </span><span class="nx">GetIntProperty</span><span class="p">(</span><span class="nx">key</span><span class="w"> </span><span class="nx">Key</span><span class="p">,</span><span class="w"> </span><span class="nx">defaultValue</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="nx">IntPropertyFn</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kd">func</span><span class="p">(</span><span class="nx">opts</span><span class="w"> </span><span class="o">...</span><span class="nx">FilterOption</span><span class="p">)</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nx">filters</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">toFilterMap</span><span class="p">(</span><span class="nx">opts</span><span class="o">...</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="nx">val</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">client</span><span class="p">.</span><span class="nx">GetIntValue</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="nx">key</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nx">filters</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="nx">defaultValue</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nx">c</span><span class="p">.</span><span class="nx">logError</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span><span class="w"> </span><span class="nx">filters</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="nx">c</span><span class="p">.</span><span class="nx">logValue</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span><span class="w"> </span><span class="nx">filters</span><span class="p">,</span><span class="w"> </span><span class="nx">val</span><span class="p">,</span><span class="w"> </span><span class="nx">defaultValue</span><span class="p">,</span><span class="w"> </span><span class="nx">intCompareEquals</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">val</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>具体使用上是先获取<code>PropertyFn</code>，之后对函数求值：</p>
+<div class="highlight"><span class="filename">Usage</span><pre><span></span><code><span class="nx">prop</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">c</span><span class="p">.</span><span class="nx">GetProperty</span><span class="p">(</span><span class="s">&quot;key&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span><span class="p">)</span><span class="w"></span>
+<span class="nx">value</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">prop</span><span class="p">()</span><span class="w"></span>
+</code></pre></div>
+<p>最后，一个配置结构体的变成了如下情形：
+<div class="highlight"><span class="filename">Config</span><pre><span></span><code><span class="c1">// Config represents configuration for cadence-frontend service</span><span class="w"></span>
+<span class="kd">type</span><span class="w"> </span><span class="nx">Config</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">PersistenceMaxQPS</span><span class="w">               </span><span class="nx">dynamicconfig</span><span class="p">.</span><span class="nx">IntPropertyFn</span><span class="w"></span>
+<span class="w">    </span><span class="nx">PersistenceGlobalMaxQPS</span><span class="w">         </span><span class="nx">dynamicconfig</span><span class="p">.</span><span class="nx">IntPropertyFn</span><span class="w"></span>
+<span class="w">    </span><span class="nx">EnableVisibilitySampling</span><span class="w">        </span><span class="nx">dynamicconfig</span><span class="p">.</span><span class="nx">BoolPropertyFn</span><span class="w"></span>
+<span class="w">    </span><span class="nx">EnableReadFromClosedExecutionV2</span><span class="w"> </span><span class="nx">dynamicconfig</span><span class="p">.</span><span class="nx">BoolPropertyFn</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ...</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+所有的字段的值都是一个<code>PropertyFn</code>。</p>
+<h2 id="5">5. 持久化存储<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<h3 id="51-configstoreclient">5.1 configStoreClient<a class="headerlink" href="#51-configstoreclient" title="Permanent link">&para;</a></h3>
+<p>持久化配置存储的<code>client</code>实现是类似的：
+<div class="highlight"><span class="filename">configStoreClient</span><pre><span></span><code><span class="kd">type</span><span class="w"> </span><span class="nx">configStoreClient</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">values</span><span class="w">             </span><span class="nx">atomic</span><span class="p">.</span><span class="nx">Value</span><span class="w"></span>
+<span class="w">    </span><span class="nx">lastUpdatedTime</span><span class="w">    </span><span class="nx">time</span><span class="p">.</span><span class="nx">Time</span><span class="w"></span>
+<span class="w">    </span><span class="nx">config</span><span class="w">             </span><span class="o">*</span><span class="nx">csc</span><span class="p">.</span><span class="nx">ClientConfig</span><span class="w"></span>
+<span class="w">    </span><span class="nx">configStoreManager</span><span class="w"> </span><span class="nx">persistence</span><span class="p">.</span><span class="nx">ConfigStoreManager</span><span class="w"></span>
+<span class="w">    </span><span class="nx">doneCh</span><span class="w">             </span><span class="kd">chan</span><span class="w"> </span><span class="kd">struct</span><span class="p">{}</span><span class="w"></span>
+<span class="w">    </span><span class="nx">logger</span><span class="w">             </span><span class="nx">log</span><span class="p">.</span><span class="nx">Logger</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kd">type</span><span class="w"> </span><span class="nx">configStoreClient</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">values</span><span class="w">             </span><span class="nx">atomic</span><span class="p">.</span><span class="nx">Value</span><span class="w"></span>
+<span class="w">    </span><span class="nx">lastUpdatedTime</span><span class="w">    </span><span class="nx">time</span><span class="p">.</span><span class="nx">Time</span><span class="w"></span>
+<span class="w">    </span><span class="nx">config</span><span class="w">             </span><span class="o">*</span><span class="nx">csc</span><span class="p">.</span><span class="nx">ClientConfig</span><span class="w"></span>
+<span class="w">    </span><span class="nx">configStoreManager</span><span class="w"> </span><span class="nx">persistence</span><span class="p">.</span><span class="nx">ConfigStoreManager</span><span class="w"></span>
+<span class="w">    </span><span class="nx">doneCh</span><span class="w">             </span><span class="kd">chan</span><span class="w"> </span><span class="kd">struct</span><span class="p">{}</span><span class="w"></span>
+<span class="w">    </span><span class="nx">logger</span><span class="w">             </span><span class="nx">log</span><span class="p">.</span><span class="nx">Logger</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div></p>
+<h3 id="52">5.2 构造器<a class="headerlink" href="#52" title="Permanent link">&para;</a></h3>
+<p>构造器实现类似<code>fileBasedClient</code>，同样通过实现了定时更新的策略。</p>
+<div class="highlight"><span class="filename">NewConfigStoreClient</span><pre><span></span><code><span class="c1">// NewConfigStoreClient creates a config store client</span><span class="w"></span>
+<span class="kd">func</span><span class="w"> </span><span class="nx">NewConfigStoreClient</span><span class="p">(</span><span class="nx">clientCfg</span><span class="w"> </span><span class="o">*</span><span class="nx">csc</span><span class="p">.</span><span class="nx">ClientConfig</span><span class="p">,</span><span class="w"> </span><span class="nx">persistenceCfg</span><span class="w"> </span><span class="o">*</span><span class="nx">config</span><span class="p">.</span><span class="nx">Persistence</span><span class="p">,</span><span class="w"> </span><span class="nx">logger</span><span class="w"> </span><span class="nx">log</span><span class="p">.</span><span class="nx">Logger</span><span class="p">,</span><span class="w"> </span><span class="nx">doneCh</span><span class="w"> </span><span class="kd">chan</span><span class="w"> </span><span class="kd">struct</span><span class="p">{})</span><span class="w"> </span><span class="p">(</span><span class="nx">dc</span><span class="p">.</span><span class="nx">Client</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">validateClientConfig</span><span class="p">(</span><span class="nx">clientCfg</span><span class="p">);</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nx">logger</span><span class="p">.</span><span class="nx">Error</span><span class="p">(</span><span class="s">&quot;Invalid Client Config Values, Using Default Values&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="nx">clientCfg</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">defaultConfigValues</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">persistenceCfg</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">&quot;persistence cfg is nil&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nx">persistenceCfg</span><span class="p">.</span><span class="nx">DefaultStore</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s">&quot;cass-default&quot;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Errorf</span><span class="p">(</span><span class="s">&quot;persistence cfg default store is not Cassandra&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nx">store</span><span class="p">,</span><span class="w"> </span><span class="nx">ok</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">persistenceCfg</span><span class="p">.</span><span class="nx">DataStores</span><span class="p">[</span><span class="nx">persistenceCfg</span><span class="p">.</span><span class="nx">DefaultStore</span><span class="p">];</span><span class="w"> </span><span class="p">!</span><span class="nx">ok</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">&quot;persistence cfg datastores missing Cassandra&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nx">store</span><span class="p">.</span><span class="nx">NoSQL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">&quot;NoSQL struct is nil&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="nx">client</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">newConfigStoreClient</span><span class="p">(</span><span class="nx">clientCfg</span><span class="p">,</span><span class="w"> </span><span class="nx">persistenceCfg</span><span class="p">.</span><span class="nx">DataStores</span><span class="p">[</span><span class="nx">persistenceCfg</span><span class="p">.</span><span class="nx">DefaultStore</span><span class="p">].</span><span class="nx">NoSQL</span><span class="p">,</span><span class="w"> </span><span class="nx">logger</span><span class="p">,</span><span class="w"> </span><span class="nx">doneCh</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="hll"><span class="w">    </span><span class="nx">err</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">client</span><span class="p">.</span><span class="nx">startUpdate</span><span class="p">()</span><span class="w"></span>
+</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">client</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+
+<span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">csc</span><span class="w"> </span><span class="o">*</span><span class="nx">configStoreClient</span><span class="p">)</span><span class="w"> </span><span class="nx">startUpdate</span><span class="p">()</span><span class="w"> </span><span class="kt">error</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">csc</span><span class="p">.</span><span class="nx">update</span><span class="p">();</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">err</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">go</span><span class="w"> </span><span class="kd">func</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nx">ticker</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">NewTicker</span><span class="p">(</span><span class="nx">csc</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">PollInterval</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">select</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="o">&lt;-</span><span class="nx">ticker</span><span class="p">.</span><span class="nx">C</span><span class="p">:</span><span class="w"></span>
+<span class="w">                </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">csc</span><span class="p">.</span><span class="nx">update</span><span class="p">()</span><span class="w"></span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="nx">csc</span><span class="p">.</span><span class="nx">logger</span><span class="p">.</span><span class="nx">Error</span><span class="p">(</span><span class="s">&quot;Failed to update dynamic config&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">tag</span><span class="p">.</span><span class="nx">Error</span><span class="p">(</span><span class="nx">err</span><span class="p">))</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="o">&lt;-</span><span class="nx">csc</span><span class="p">.</span><span class="nx">doneCh</span><span class="p">:</span><span class="w"></span>
+<span class="w">                </span><span class="nx">ticker</span><span class="p">.</span><span class="nx">Stop</span><span class="p">()</span><span class="w"></span>
+<span class="w">                </span><span class="k">return</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}()</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p><code>update</code>的具体实现不过是通过<code>configStoreManager</code>从持久化存储中获取数据而已。</p>
+<p><div class="highlight"><span class="filename">update</span><pre><span></span><code><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">csc</span><span class="w"> </span><span class="o">*</span><span class="nx">configStoreClient</span><span class="p">)</span><span class="w"> </span><span class="nx">update</span><span class="p">()</span><span class="w"> </span><span class="kt">error</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">ctx</span><span class="p">,</span><span class="w"> </span><span class="nx">cancel</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">context</span><span class="p">.</span><span class="nx">WithTimeout</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nx">Background</span><span class="p">(),</span><span class="w"> </span><span class="nx">csc</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">FetchTimeout</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">defer</span><span class="w"> </span><span class="nx">cancel</span><span class="p">()</span><span class="w"></span>
+
+<span class="hll"><span class="w">    </span><span class="nx">res</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">csc</span><span class="p">.</span><span class="nx">configStoreManager</span><span class="p">.</span><span class="nx">FetchDynamicConfig</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span><span class="w"></span>
+</span>
+<span class="w">    </span><span class="k">select</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="o">&lt;-</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">Done</span><span class="p">():</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">&quot;timeout error on fetch&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">default</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Errorf</span><span class="p">(</span><span class="s">&quot;failed to fetch dynamic config snapshot %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">res</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">res</span><span class="p">.</span><span class="nx">Snapshot</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">defer</span><span class="w"> </span><span class="kd">func</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="nx">csc</span><span class="p">.</span><span class="nx">lastUpdatedTime</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">Now</span><span class="p">()</span><span class="w"></span>
+<span class="w">            </span><span class="p">}()</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="nx">csc</span><span class="p">.</span><span class="nx">storeValues</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">Snapshot</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">nil</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+这里不再讨论<code>FetchDynamicConfig</code>的具体实现了，不过是对SQL的封装。</p>
+<h2 id="6">6. 总结<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
+<p><code>Dynamic Config</code>的封装实现，可以做到对配置的修改而不用重启服务。抽象接口<code>Client</code>下可以使用<code>filedBaseClient</code>或者<code>configStoreClient</code>。两者的实现思路基本相同，都是设置了定时器的方式，定时更新配置。同时为了防止配置被保存在内存中，通过<code>PropertyFn</code>封装了对配置的访问。</p>
+<p><code>Client</code>接口实现的思路是的抽象非常干净，用户可以自行切换具体的实现，比如使用ETCD等服务真正实现实时响应的配置修改。</p>
+<p>同时对于<code>fileBasedClient</code>的理论上不一定需要使用定时器的方式实现，通过文件监听的方式也是可行的。</p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../../first-of-first/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 初心" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              初心
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../go-future-implementation/" class="md-footer__link md-footer__link--next" aria-label="Next: Go Future" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Go Future
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.sections", "navigation.expand", "toc.integrate", "navigation.top", "content.code.annotate"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.bd0b6b67.min.js"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.467223ff.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
